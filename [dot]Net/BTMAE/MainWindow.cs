@@ -30,6 +30,9 @@ namespace BTMAE
                 client = new BluetoothClient();
                 //bluetooth device is enabled
                 enabled = true;
+                //the list holding bluetooth devices
+                deviceList = new System.Collections.Generic.List<string>();
+
                 //noify user that program is ready to explor
                 notificaion.BalloonTipText = "ready!";
                 notificaion.BalloonTipIcon = ToolTipIcon.Info;
@@ -48,7 +51,7 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// Explor button click event handler
+        /// Explor button click event handler.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -69,7 +72,7 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// Get the full list of bluetooth devices around the area
+        /// Get the full list of bluetooth devices around the area.
         /// </summary>
         private void Explore()
         {
@@ -82,9 +85,10 @@ namespace BTMAE
             {
                 //search for bluetooth devices
                 devices = client.DiscoverDevices();
-                //build the list of found devices
-                deviceList = new System.Collections.Generic.List<string>();
+                //clear old data
+                deviceList.Clear();
 
+                //build the list of found devices
                 foreach (BluetoothDeviceInfo device in devices)
                 {
                     deviceList.Add(device.DeviceName);
@@ -109,7 +113,7 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// devices combobox selecion change event handler
+        /// devices combobox selecion change event handler.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -131,7 +135,7 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// window loaded event handler
+        /// window loaded event handler.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -144,7 +148,7 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// Mac address label click event handler
+        /// Mac address label click event handler.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -197,7 +201,7 @@ namespace BTMAE
         void Poke(object parameters)
         {
             Array argsArray = (Array)parameters;
-
+            //get the bluetooth address from the parameters object
             InTheHand.Net.BluetoothAddress address = argsArray.GetValue(0) as InTheHand.Net.BluetoothAddress;
 
             //noify user that program is exploring
@@ -220,6 +224,10 @@ namespace BTMAE
                 notificaion.BalloonTipText = "done!";
                 //show noificaion
                 notificaion.ShowBalloonTip(500);
+
+                //close the connection
+                stream = null;
+                client.Client.Disconnect(true);
             }
             catch (System.Net.Sockets.SocketException ex)
             {
@@ -232,32 +240,32 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// client of a bluetooth chip that looks for devices
+        /// client of a bluetooth chip that looks for devices.
         /// </summary>
         private BluetoothClient client;
 
         /// <summary>
-        /// devices found
+        /// devices found.
         /// </summary>
         private BluetoothDeviceInfo[] devices;
 
         /// <summary>
-        /// list of devices found
+        /// list of devices found.
         /// </summary>
         private System.Collections.Generic.List<string> deviceList;
 
         /// <summary>
-        /// Indicates wether a current explor operaion is being executed or not
+        /// Indicates wether a current explor operaion is being executed or not.
         /// </summary>
         private bool pendingSearch;
 
         /// <summary>
-        /// Indicates if the host machine has a bluetooth device or it is not supported
+        /// Indicates if the host machine has a bluetooth device or it is not supported.
         /// </summary>
         private bool enabled;
 
         /// <summary>
-        /// Indicates a device being poked at the moment
+        /// Indicates a device being poked at the moment.
         /// </summary>
         private bool poking;
 

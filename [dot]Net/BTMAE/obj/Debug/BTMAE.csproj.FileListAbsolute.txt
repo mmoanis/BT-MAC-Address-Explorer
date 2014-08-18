@@ -13,3 +13,17 @@ F:\mohamed\BT MAC Address Explorer\BTMAE\BTMAE\bin\Debug\BTMAE.exe.manifest
 F:\mohamed\BT MAC Address Explorer\BTMAE\BTMAE\bin\Debug\BTMAE.application
 F:\mohamed\BT MAC Address Explorer\BTMAE\BTMAE\obj\Debug\BTMAE.exe.manifest
 F:\mohamed\BT MAC Address Explorer\BTMAE\BTMAE\obj\Debug\BTMAE.application
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\bin\Debug\BTMAE.exe.config
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.exe
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.pdb
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\bin\Debug\BTMAE.exe.manifest
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\bin\Debug\BTMAE.application
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\bin\Debug\BTMAE.exe
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\bin\Debug\BTMAE.pdb
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\bin\Debug\InTheHand.Net.Personal.xml
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.csprojResolveAssemblyReference.cache
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.MainMindow.resources
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.Properties.Resources.resources
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.csproj.GenerateResource.Cache
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.exe.manifest
+E:\github\BT-MAC-Address-Explorer\[dot]Net\BTMAE\obj\Debug\BTMAE.application

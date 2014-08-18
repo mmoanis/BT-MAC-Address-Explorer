@@ -118,7 +118,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(16, 176);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
+            this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 12;
             this.label7.Text = "last used:";
             // 
@@ -127,7 +127,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(19, 142);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 11;
             this.label6.Text = "last seen:";
             // 
@@ -144,7 +144,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(16, 109);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "Remembered:";
             // 
@@ -161,7 +161,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(163, 80);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.Size = new System.Drawing.Size(79, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Authenticated:";
             // 
@@ -171,7 +171,7 @@
             this.linkLabel1.LinkVisited = true;
             this.linkLabel1.Location = new System.Drawing.Point(19, 7);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(74, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(75, 13);
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "MAC Address:";
@@ -199,7 +199,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(16, 80);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Connected:";
             // 
@@ -236,10 +236,10 @@
             // 
             // aboutTB
             // 
-            this.aboutTB.Location = new System.Drawing.Point(12, 61);
+            this.aboutTB.Location = new System.Drawing.Point(12, 39);
             this.aboutTB.Name = "aboutTB";
             this.aboutTB.ReadOnly = true;
-            this.aboutTB.Size = new System.Drawing.Size(171, 111);
+            this.aboutTB.Size = new System.Drawing.Size(171, 138);
             this.aboutTB.TabIndex = 4;
             this.aboutTB.Text = "";
             this.aboutTB.Click += new System.EventHandler(this.aboutTB_Click);
