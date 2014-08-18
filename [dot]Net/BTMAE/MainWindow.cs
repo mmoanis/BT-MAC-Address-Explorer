@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Xml;
-using System.Deployment.Application;
 using System.Windows.Forms;
 
 using BTMAE.Properties;
@@ -19,27 +17,26 @@ namespace BTMAE
             poking = false;
 
             //read configuration and localization data
-            XmlDocument config = new XmlDocument();
-            //the xml file is stored in the data directory of the application
+            System.Xml.XmlDocument config = new System.Xml.XmlDocument();
+            
             try
             {
-                config.Load(ApplicationDeployment.CurrentDeployment.DataDirectory + @"\config.xml");
-            }
-            catch (System.IO.FileNotFoundException)
-            {
+                //the xml file is stored in the data directory of the application
+                config.Load(System.Deployment.Application.ApplicationDeployment.CurrentDeployment.DataDirectory + @"\config.xml");
+                notificaion.BalloonTipTitle = config.GetElementsByTagName("header")[0].InnerText; ;
+                aboutTB.Text = config.GetElementsByTagName("about")[0].InnerText;
 
-            }
-
-            notificaion.BalloonTipTitle = config.GetElementsByTagName("header")[0].InnerText; ;
-            aboutTB.Text = config.GetElementsByTagName("about")[0].InnerText;
-            try
-            {
+                //start the bluetooth client
                 client = new BluetoothClient();
                 //bluetooth device is enabled
                 enabled = true;
                 //noify user that program is ready to explor
                 notificaion.BalloonTipText = "ready!";
                 notificaion.BalloonTipIcon = ToolTipIcon.Info;
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                //TODO: exception
             }
             catch (NotSupportedException)
             {
@@ -51,7 +48,7 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// 
+        /// Explor button click event handler
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -62,7 +59,7 @@ namespace BTMAE
                 pendingSearch = true;
 
                 //start search
-                System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(Explor));
+                System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(Explore));
                 thread.Start();
             }
             else
@@ -74,8 +71,13 @@ namespace BTMAE
         /// <summary>
         /// Get the full list of bluetooth devices around the area
         /// </summary>
-        private void Explor()
+        private void Explore()
         {
+            //noify user that program is exploring
+            notificaion.BalloonTipText = "exploring...";
+            //show noificaion
+            notificaion.ShowBalloonTip(2000);
+            
             try
             {
                 //search for bluetooth devices
@@ -90,6 +92,11 @@ namespace BTMAE
 
                 //update the GUI list of devices
                 devicesComboBox.DataSource = deviceList;
+
+                //noify user that program is exploring
+                notificaion.BalloonTipText = "done!";
+                //show noificaion
+                notificaion.ShowBalloonTip(500);
             }
             catch (Exception ex)
             {
@@ -157,14 +164,25 @@ namespace BTMAE
         {
             if (devicesComboBox.SelectedIndex != -1)
             {
+                //get the selected bluetooth device selected
                 BluetoothDeviceInfo device = (BluetoothDeviceInfo)devices.GetValue(devicesComboBox.SelectedIndex);
+
                 if (!poking)
                 {
-                    poking = true;
+                    if (!string.IsNullOrEmpty(pokeBox.Text))
+                    {
+                        poking = true;
 
-                    //start poke
-                    System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Poke));
-                    thread.Start(device.DeviceAddress);
+                        //build the method argument
+                        object args = new object[2] {device.DeviceAddress, pokeBox.Text};
+                        //start poke
+                        System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Poke));
+                        thread.Start(args);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please supply in the poke string in the text field on the right of poke button");
+                    }
                 }
                 else
                 {
@@ -174,11 +192,19 @@ namespace BTMAE
         }
 
         /// <summary>
-        /// Send a poke message to the bluetooth device
+        /// Send a poke message to the bluetooth device.
         /// </summary>
-        void Poke(object parameter)
+        void Poke(object parameters)
         {
-            InTheHand.Net.BluetoothAddress address = parameter as InTheHand.Net.BluetoothAddress;
+            Array argsArray = (Array)parameters;
+
+            InTheHand.Net.BluetoothAddress address = argsArray.GetValue(0) as InTheHand.Net.BluetoothAddress;
+
+            //noify user that program is exploring
+            notificaion.BalloonTipText = "poking: " + address.ToString();
+            //show noificaion
+            notificaion.ShowBalloonTip(2000);
+
             try
             {
                 //connect to the choosen device
@@ -187,12 +213,17 @@ namespace BTMAE
                 System.Net.Sockets.NetworkStream stream = client.GetStream();
 
                 //send a poke message
-                byte[] buffer = System.Text.Encoding.ASCII.GetBytes("a");
+                byte[] buffer = System.Text.Encoding.ASCII.GetBytes((string)argsArray.GetValue(1));
                 stream.Write(buffer, 0, buffer.Length);
+
+                //noify user that program is exploring
+                notificaion.BalloonTipText = "done!";
+                //show noificaion
+                notificaion.ShowBalloonTip(500);
             }
-            catch (System.Net.Sockets.SocketException)
+            catch (System.Net.Sockets.SocketException ex)
             {
-                //TODO: exception
+                MessageBox.Show(ex.Message, "Error poking: " + address.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

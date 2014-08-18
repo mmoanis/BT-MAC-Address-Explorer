@@ -51,6 +51,7 @@
             this.notificaion = new System.Windows.Forms.NotifyIcon(this.components);
             this.aboutTB = new System.Windows.Forms.RichTextBox();
             this.poke = new System.Windows.Forms.Button();
+            this.pokeBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             this.explor.Name = "explor";
             this.explor.Size = new System.Drawing.Size(171, 23);
             this.explor.TabIndex = 0;
-            this.explor.Text = "explor";
+            this.explor.Text = "explore";
             this.explor.UseVisualStyleBackColor = true;
             this.explor.Click += new System.EventHandler(this.explor_Click);
             // 
@@ -93,7 +94,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(200, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(330, 194);
+            this.panel1.Size = new System.Drawing.Size(330, 225);
             this.panel1.TabIndex = 2;
             // 
             // lastUsedTB
@@ -168,7 +169,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkVisited = true;
-            this.linkLabel1.Location = new System.Drawing.Point(71, 8);
+            this.linkLabel1.Location = new System.Drawing.Point(19, 7);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(74, 13);
             this.linkLabel1.TabIndex = 6;
@@ -204,7 +205,7 @@
             // 
             // macAddressTextBox
             // 
-            this.macAddressTextBox.Location = new System.Drawing.Point(151, 5);
+            this.macAddressTextBox.Location = new System.Drawing.Point(99, 4);
             this.macAddressTextBox.Name = "macAddressTextBox";
             this.macAddressTextBox.ReadOnly = true;
             this.macAddressTextBox.Size = new System.Drawing.Size(155, 20);
@@ -238,26 +239,35 @@
             this.aboutTB.Location = new System.Drawing.Point(12, 61);
             this.aboutTB.Name = "aboutTB";
             this.aboutTB.ReadOnly = true;
-            this.aboutTB.Size = new System.Drawing.Size(171, 145);
+            this.aboutTB.Size = new System.Drawing.Size(171, 111);
             this.aboutTB.TabIndex = 4;
             this.aboutTB.Text = "";
             this.aboutTB.Click += new System.EventHandler(this.aboutTB_Click);
             // 
             // poke
             // 
-            this.poke.Location = new System.Drawing.Point(287, 214);
+            this.poke.Location = new System.Drawing.Point(12, 183);
             this.poke.Name = "poke";
-            this.poke.Size = new System.Drawing.Size(171, 23);
+            this.poke.Size = new System.Drawing.Size(84, 23);
             this.poke.TabIndex = 5;
-            this.poke.Text = "poke";
+            this.poke.Text = "poke with:";
             this.poke.UseVisualStyleBackColor = true;
             this.poke.Click += new System.EventHandler(this.poke_Click);
+            // 
+            // pokeBox
+            // 
+            this.pokeBox.Location = new System.Drawing.Point(102, 186);
+            this.pokeBox.MaxLength = 20;
+            this.pokeBox.Name = "pokeBox";
+            this.pokeBox.Size = new System.Drawing.Size(81, 20);
+            this.pokeBox.TabIndex = 15;
             // 
             // MainMindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 260);
+            this.ClientSize = new System.Drawing.Size(538, 245);
+            this.Controls.Add(this.pokeBox);
             this.Controls.Add(this.poke);
             this.Controls.Add(this.aboutTB);
             this.Controls.Add(this.label1);
@@ -299,6 +309,7 @@
         private System.Windows.Forms.NotifyIcon notificaion;
         private System.Windows.Forms.RichTextBox aboutTB;
         private System.Windows.Forms.Button poke;
+        private System.Windows.Forms.TextBox pokeBox;
     }
 }
 
